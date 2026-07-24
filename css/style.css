@@ -1,0 +1,350 @@
+/* =====================================================================
+   Painel de Estoque — tema "manifesto de expedição"
+   Paleta kraft + tinta, tipografia estêncil/mono, status como carimbo.
+   ===================================================================== */
+
+:root {
+  --paper: #ede3d0;
+  --card: #fbf6ec;
+  --ink: #2b2420;
+  --ink-soft: #6b6152;
+  --line: #c7b48d;
+  --stamp-green: #2f6b3a;
+  --stamp-amber: #b8791a;
+  --stamp-red: #a63328;
+  --accent: #2e4a5e;
+
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3,
+.navbar-brand,
+.nav-link,
+.btn,
+label,
+.card-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+h1, h2 {
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------
+   Barra de código de barras — divisor decorativo entre cabeçalho e conteúdo
+   --------------------------------------------------------------------- */
+
+.barcode-rule {
+  height: 12px;
+  margin-bottom: 1.5rem;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0,
+    var(--ink) 2px,
+    transparent 2px,
+    transparent 5px,
+    var(--ink) 5px,
+    var(--ink) 6px,
+    transparent 6px,
+    transparent 10px,
+    var(--ink) 10px,
+    var(--ink) 13px,
+    transparent 13px,
+    transparent 16px
+  );
+  opacity: 0.55;
+}
+
+/* ---------------------------------------------------------------------
+   Navbar — cabeçalho de manifesto
+   --------------------------------------------------------------------- */
+
+nav.navbar {
+  background-color: var(--ink) !important;
+  border-bottom: 4px solid var(--stamp-amber);
+}
+
+nav.navbar .navbar-brand {
+  color: var(--card) !important;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+nav.navbar .nav-link {
+  color: rgba(251, 246, 236, 0.65) !important;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem !important;
+  border-bottom: 2px solid transparent;
+}
+
+nav.navbar .nav-link:hover {
+  color: var(--card) !important;
+}
+
+nav.navbar .nav-link.active {
+  color: var(--card) !important;
+  border-bottom-color: var(--stamp-amber);
+}
+
+/* ---------------------------------------------------------------------
+   Cards — etiquetas de expedição
+   --------------------------------------------------------------------- */
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--ink);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 rgba(43, 36, 32, 0.08);
+}
+
+.card-title {
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.5rem;
+}
+
+.card-indicador {
+  border-left-width: 6px;
+  box-shadow: 3px 3px 0 rgba(43, 36, 32, 0.08);
+}
+
+.card-indicador .valor {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.card-indicador .rotulo {
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.grafico-container {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 rgba(43, 36, 32, 0.08);
+  padding: 1.5rem;
+}
+
+/* ---------------------------------------------------------------------
+   Formulários — campos de preenchimento estilo ficha
+   --------------------------------------------------------------------- */
+
+label.form-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 0.3rem;
+}
+
+.form-control,
+.form-select {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--line);
+  border-radius: 0;
+  padding-left: 0.1rem;
+  color: var(--ink);
+  font-family: var(--font-mono);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: transparent;
+  border-bottom-color: var(--accent);
+  box-shadow: none;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: #b7ab93;
+  font-family: var(--font-body);
+}
+
+.status-derivado {
+  background-color: rgba(199, 180, 141, 0.25) !important;
+  border-bottom-style: dashed;
+  cursor: not-allowed;
+  font-family: var(--font-mono);
+}
+
+/* ---------------------------------------------------------------------
+   Botões
+   --------------------------------------------------------------------- */
+
+.btn {
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 1rem;
+}
+
+.btn-primary {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: var(--card);
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.btn-outline-secondary {
+  color: var(--ink-soft);
+  border-color: var(--line);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--line);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-outline-primary {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-outline-danger {
+  color: var(--stamp-red);
+  border-color: var(--stamp-red);
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--stamp-red);
+  border-color: var(--stamp-red);
+}
+
+.tabela-acoes button {
+  margin-right: 0.25rem;
+}
+
+/* ---------------------------------------------------------------------
+   Tabelas — manifesto / ficha de carga
+   --------------------------------------------------------------------- */
+
+.table {
+  color: var(--ink);
+}
+
+.table thead th {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  border-bottom: 2px solid var(--ink);
+  background-color: transparent;
+}
+
+.table td {
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  vertical-align: middle;
+}
+
+.table td:first-child {
+  font-family: var(--font-body);
+}
+
+.table tbody tr:hover {
+  background-color: rgba(199, 180, 141, 0.2);
+}
+
+/* ---------------------------------------------------------------------
+   Status — carimbo de tinta (elemento de assinatura)
+   --------------------------------------------------------------------- */
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.35em 0.75em;
+  border: 2px solid currentColor;
+  border-radius: 3px;
+  background: transparent !important;
+  position: relative;
+  transform: rotate(-2deg);
+}
+
+.badge-status::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.badge-disponivel {
+  color: var(--stamp-green);
+}
+
+.badge-baixo {
+  color: var(--stamp-amber);
+}
+
+.badge-indisponivel {
+  color: var(--stamp-red);
+}
+
+/* ---------------------------------------------------------------------
+   Alertas
+   --------------------------------------------------------------------- */
+
+.alert {
+  border-radius: 2px;
+  font-family: var(--font-body);
+}
+
+.alert-success {
+  background-color: rgba(47, 107, 58, 0.12);
+  border: 1px dashed var(--stamp-green);
+  color: var(--stamp-green);
+}
+
+.alert-danger {
+  background-color: rgba(166, 51, 40, 0.1);
+  border: 1px dashed var(--stamp-red);
+  color: var(--stamp-red);
+}
+
+.alert-warning {
+  background-color: rgba(184, 121, 26, 0.1);
+  border: 1px dashed var(--stamp-amber);
+  color: var(--stamp-amber);
+}

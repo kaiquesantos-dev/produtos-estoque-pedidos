@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Produtos, Estoque e Pedidos</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="dashboard.html">🏷️ Painel de Estoque</a>
+      <div class="navbar-nav">
+        <a class="nav-link active" href="dashboard.html">Dashboard</a>
+        <a class="nav-link" href="produtos.html">Produtos</a>
+        <a class="nav-link" href="estoque.html">Estoque</a>
+        <a class="nav-link" href="pedidos.html">Pedidos</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-3">
+
+    <header class="mb-4">
+      <h1 class="h3 mb-1">Dashboard</h1>
+      <p class="text-muted mb-0">Visão consolidada de Produtos, Estoque e Pedidos</p>
+    </header>
+
+    <div class="barcode-rule"></div>
+
+    <!-- Indicadores -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card card-indicador h-100">
+          <div class="card-body">
+            <div class="rotulo">Total de Produtos</div>
+            <div class="valor" id="indicadorTotalProdutos">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card card-indicador h-100">
+          <div class="card-body">
+            <div class="rotulo">Estoque Baixo</div>
+            <div class="valor" id="indicadorEstoqueBaixo">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card card-indicador h-100">
+          <div class="card-body">
+            <div class="rotulo">Pedidos no Mês</div>
+            <div class="valor" id="indicadorPedidosMes">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card card-indicador h-100">
+          <div class="card-body">
+            <div class="rotulo">Faturamento Estimado</div>
+            <div class="valor" id="indicadorFaturamento">-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="grafico-container h-100">
+          <h2 class="h5 mb-3">Produtos por Status</h2>
+          <canvas id="graficoStatusProdutos"></canvas>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="grafico-container h-100">
+          <h2 class="h5 mb-3">Faturamento por Status do Pedido</h2>
+          <canvas id="graficoFaturamento"></canvas>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="grafico-container h-100">
+          <h2 class="h5 mb-3">Quantidade em Estoque por Produto</h2>
+          <canvas id="graficoEstoque"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aviso de erro (controlado via JS) -->
+    <div class="alert alert-danger d-none" id="alertErroDashboard" role="alert"></div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

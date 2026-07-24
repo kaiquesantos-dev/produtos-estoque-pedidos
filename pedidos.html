@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos | Produtos, Estoque e Pedidos</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="dashboard.html">🏷️ Painel de Estoque</a>
+      <div class="navbar-nav">
+        <a class="nav-link" href="dashboard.html">Dashboard</a>
+        <a class="nav-link" href="produtos.html">Produtos</a>
+        <a class="nav-link" href="estoque.html">Estoque</a>
+        <a class="nav-link active" href="pedidos.html">Pedidos</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-3">
+
+    <header class="mb-4">
+      <h1 class="h3 mb-1">🧾 Pedidos</h1>
+      <p class="text-muted mb-0">
+        Um novo pedido reduz a quantidade em estoque do produto, o que também recalcula o status dele.
+      </p>
+    </header>
+
+    <div class="barcode-rule"></div>
+
+    <div class="row g-4">
+
+      <!-- Formulário de novo pedido -->
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="h5 card-title mb-3">Novo Pedido</h2>
+
+            <div class="alert alert-success d-none" id="alertSucessoPedido" role="alert"></div>
+            <div class="alert alert-danger d-none" id="alertErroPedido" role="alert"></div>
+
+            <form id="formPedido" novalidate>
+              <div class="mb-3">
+                <label for="pedidoCliente" class="form-label">Cliente</label>
+                <input type="text" class="form-control" id="pedidoCliente" placeholder="Ex: João Silva" required>
+                <div class="invalid-feedback">Informe o nome do cliente.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="pedidoProdutoId" class="form-label">Produto</label>
+                <select class="form-select" id="pedidoProdutoId" required>
+                  <option value="" selected disabled>Selecione um produto</option>
+                  <!-- Opções carregadas via JS a partir de /produtos -->
+                </select>
+                <div class="invalid-feedback">Selecione um produto.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="pedidoQuantidade" class="form-label">Quantidade</label>
+                <input type="number" step="1" min="1" class="form-control" id="pedidoQuantidade" placeholder="Ex: 2" required>
+                <div class="invalid-feedback">Informe uma quantidade válida (1 ou maior).</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100" id="btnSalvarPedido">Registrar Pedido</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Listagem -->
+      <div class="col-md-8">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="h5 card-title mb-3">Pedidos Registrados</h2>
+
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                    <th>Itens</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="corpoTabelaPedidos">
+                  <!-- Linhas geradas via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="alert alert-warning d-none" id="alertSemPedidos" role="alert">
+              Nenhum pedido registrado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="js/pedidos.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estoque | Produtos, Estoque e Pedidos</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="dashboard.html">🏷️ Painel de Estoque</a>
+      <div class="navbar-nav">
+        <a class="nav-link" href="dashboard.html">Dashboard</a>
+        <a class="nav-link" href="produtos.html">Produtos</a>
+        <a class="nav-link active" href="estoque.html">Estoque</a>
+        <a class="nav-link" href="pedidos.html">Pedidos</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-3">
+
+    <header class="mb-4">
+      <h1 class="h3 mb-1">🗃️ Estoque</h1>
+      <p class="text-muted mb-0">
+        Alterar a quantidade aqui recalcula automaticamente o status do produto correspondente.
+      </p>
+    </header>
+
+    <div class="barcode-rule"></div>
+
+    <div class="row g-4">
+
+      <!-- Formulário de cadastro/edição -->
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="h5 card-title mb-3" id="tituloFormEstoque">Novo Registro de Estoque</h2>
+
+            <div class="alert alert-success d-none" id="alertSucessoEstoque" role="alert"></div>
+            <div class="alert alert-danger d-none" id="alertErroEstoque" role="alert"></div>
+
+            <form id="formEstoque" novalidate>
+              <input type="hidden" id="estoqueId">
+
+              <div class="mb-3">
+                <label for="estoqueProdutoId" class="form-label">Produto</label>
+                <select class="form-select" id="estoqueProdutoId" required>
+                  <option value="" selected disabled>Selecione um produto</option>
+                  <!-- Opções carregadas via JS a partir de /produtos -->
+                </select>
+                <div class="invalid-feedback">Selecione um produto.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="estoqueQuantidade" class="form-label">Quantidade</label>
+                <input type="number" step="1" min="0" class="form-control" id="estoqueQuantidade" placeholder="Ex: 15" required>
+                <div class="invalid-feedback">Informe uma quantidade válida (0 ou maior).</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100" id="btnSalvarEstoque">Salvar Estoque</button>
+              <button type="button" class="btn btn-outline-secondary w-100 mt-2 d-none" id="btnCancelarEdicaoEstoque">Cancelar edição</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Listagem -->
+      <div class="col-md-8">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+              <h2 class="h5 card-title mb-0">Registros de Estoque</h2>
+              <input type="search" class="form-control" id="filtroProdutoEstoque" placeholder="Buscar por produto..." style="max-width: 250px;">
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Status Resultante</th>
+                    <th>Atualizado em</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="corpoTabelaEstoque">
+                  <!-- Linhas geradas via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="alert alert-warning d-none" id="alertSemEstoque" role="alert">
+              Nenhum registro de estoque encontrado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="js/estoque.js"></script>
+</body>
+</html>
